@@ -60,18 +60,11 @@ class _OnBoardState extends State<OnBoard> {
                   getChangedPageAndMoveBar(page);
                 },
                 children: <Widget>[
-                  mainView(
-                      'assets/images/tutorial_image_1.png',
-                      "Mari kita mulai",
-                      'media tempat untuk mengumpulkan pertanyaan-pertanyaan dan jawabannya pada topik-topik tertentu '),
-                  mainView(
-                      'assets/images/tutorial_image_2.png',
-                      "Mari kita mulai",
-                      'dan memperbolehkan pengguna untuk ikut berkolaborasi dengan memberikan suara atau mengusulkan perbaikan jawaban'),
-                  mainView(
-                      'assets/images/tutorial_image_3.png',
-                      "Mari kita mulai",
-                      'Memiliki banyak ruang yang bisa Anda gunakan sebagai tempat informasi maupun ide-ide dari pengguna')
+                  mainView('assets/1.jpg', "WELCOME TO MY APPS !", ''),
+                  mainView('assets/2.jpg', "Mari kita mulai",
+                      'Program ini berisi data yang menampilkan berbagai program study di Fakultas SAINTEK'),
+                  mainView('assets/3.jpg', "Mari kita mulai",
+                      'Salah satunya Teknik Informatika, Teknik Informatika merupakan prodi yang paling banyak diminati di Fakuktas SAINTEK ini')
                 ],
               ),
             ),
