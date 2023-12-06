@@ -99,8 +99,6 @@ class _HomeUserState extends State<HomeUser> {
                 height: 5,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightBlue[300]),
                 onPressed: () {
                   showDialog(
                     context: context,
