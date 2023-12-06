@@ -24,10 +24,10 @@ class _HomeUserState extends State<HomeUser> {
     final drawerHeader = UserAccountsDrawerHeader(
       decoration: BoxDecoration(color: HexColor("FC997C")),
       accountName: Text(
-        'User Name',
+        'QIW QIW',
       ),
       accountEmail: Text(
-        'boltuix@gmail.com',
+        'qiwqiw@gmail.com',
       ),
       currentAccountPicture: CircleAvatar(
         child: FlutterLogo(size: 42.0),
@@ -40,7 +40,7 @@ class _HomeUserState extends State<HomeUser> {
         drawerHeader,
         ListTile(
           title: const Text(
-            'Page 1',
+            'LOPYUU',
           ),
           leading: const Icon(Icons.favorite),
           onTap: () {
