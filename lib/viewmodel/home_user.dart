@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modul7/hex_color.dart';
 import 'package:modul7/login.dart';
 import 'firestore_service.dart';
 
@@ -20,25 +21,87 @@ class _HomeUserState extends State<HomeUser> {
   final TextEditingController _editjurusanController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final drawerHeader = UserAccountsDrawerHeader(
+      decoration: BoxDecoration(color: HexColor("FC997C")),
+      accountName: Text(
+        'User Name',
+      ),
+      accountEmail: Text(
+        'boltuix@gmail.com',
+      ),
+      currentAccountPicture: CircleAvatar(
+        child: FlutterLogo(size: 42.0),
+      ),
+    );
+
+    // Define the items that will be displayed in the drawer. In this case, we have two items.
+    final drawerItems = ListView(
+      children: [
+        drawerHeader,
+        ListTile(
+          title: const Text(
+            'Page 1',
+          ),
+          leading: const Icon(Icons.favorite),
+          onTap: () {
+            // When the user taps on this item, close the drawer.
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text(
+            'Page 2',
+          ),
+          leading: const Icon(Icons.comment),
+          onTap: () {
+            // When the user taps on this item, close the drawer.
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "List of Study Program",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: HexColor("FC997C"),
+        actions: [
+          GestureDetector(
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => Login(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Icon(Icons.logout),
+            ),
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: drawerItems,
+      ),
+      backgroundColor: HexColor("FC997C"),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                "List of Study Program",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
               SizedBox(
-                height: 10,
+                height: 5,
               ),
-              InkWell(
-                onTap: () {
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightBlue[300]),
+                onPressed: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -82,34 +145,13 @@ class _HomeUserState extends State<HomeUser> {
                     },
                   );
                 },
-                child: Container(
-                  width: 150,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text(
-                      "Tambah Data",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700),
-                    ),
+                child: Text(
+                  "Tambah Data",
+                  style: TextStyle(
+                    color: Colors.black,
                   ),
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () async {
-                    await FirebaseAuth.instance.signOut();
-
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => Login(),
-                      ),
-                    );
-                  },
-                  child: Text('Sign out')),
               StreamBuilder<QuerySnapshot>(
                 stream: firestoreService.getstudyprogram(),
                 builder: (context, snapshot) {
@@ -124,7 +166,7 @@ class _HomeUserState extends State<HomeUser> {
                         width: double.infinity,
                         child: ListView.builder(
                           shrinkWrap: true,
-                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          padding: const EdgeInsets.symmetric(vertical: 5),
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: userList.length,
                           itemBuilder: (context, index) {
@@ -223,9 +265,9 @@ class _HomeUserState extends State<HomeUser> {
                                                       );
                                                     },
                                                     child: Icon(
-                                                      Icons.add_box_rounded,
+                                                      Icons.edit,
                                                       color: Colors.green,
-                                                      size: 30,
+                                                      // size: 30,
                                                     ),
                                                   ),
                                                   InkWell(
@@ -258,7 +300,7 @@ class _HomeUserState extends State<HomeUser> {
                                                     child: Icon(
                                                       Icons.delete,
                                                       color: Colors.red,
-                                                      size: 30,
+                                                      // size: 30,
                                                     ),
                                                   ),
                                                 ],

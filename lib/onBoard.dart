@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:modul7/hex_color.dart';
 import 'package:modul7/viewmodel/home_user.dart';
 
 import 'app_colors.dart';
@@ -114,7 +115,7 @@ class _OnBoardState extends State<OnBoard> {
                 },
                 child: Container(
                   width: double.infinity,
-                  color: Colors.grey[400],
+                  color: HexColor("FC997C"),
                   child: Center(
                     child: Text(buttonText),
                   ),
