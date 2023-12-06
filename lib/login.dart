@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modul7/firebase_auth.dart';
 // ignore: unused_import
 import 'package:modul7/home.dart';
+import 'package:modul7/onBoard.dart';
 import 'package:modul7/register.dart';
 import 'package:modul7/viewmodel/home_user.dart';
 
@@ -37,7 +38,7 @@ class _LoginState extends State<Login> {
         ),
       );
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeUser()));
+          context, MaterialPageRoute(builder: (context) => OnBoard()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
