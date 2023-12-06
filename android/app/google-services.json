@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "963721959947",
+    "project_id": "my-community-dd399",
+    "storage_bucket": "my-community-dd399.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963721959947:android:826cae98cca240bdd1450e",
+        "android_client_info": {
+          "package_name": "com.example.modul7"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADelcbGWtqUzavxPXtAAZ7Jyr7t1Lma9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963721959947:android:16be3db3328b2bcbd1450e",
+        "android_client_info": {
+          "package_name": "com.example.praktikum_api_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADelcbGWtqUzavxPXtAAZ7Jyr7t1Lma9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
