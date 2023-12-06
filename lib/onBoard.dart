@@ -151,10 +151,21 @@ Widget mainView(image, title, subtitle) {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image.asset(
-          image,
-          fit: BoxFit.none,
+        Container(
+          width: double.infinity,
+          // height: 150,
+          // decoration: BoxDecoration(
+          //   color: Colors.red,
+          // ),
+          child: Image.asset(
+            image,
+            fit: BoxFit.cover,
+          ),
         ),
+        // Image.asset(
+        //   image,
+        //   fit: BoxFit.none,
+        // ),
         const SizedBox(
           height: 20,
         ),
