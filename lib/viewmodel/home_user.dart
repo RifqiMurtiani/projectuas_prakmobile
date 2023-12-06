@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modul7/login.dart';
 import 'firestore_service.dart';
 
 class HomeUser extends StatefulWidget {
@@ -14,7 +16,7 @@ class _HomeUserState extends State<HomeUser> {
   final TextEditingController _fakultasController = TextEditingController();
   final TextEditingController _jurusanController = TextEditingController();
   final TextEditingController _imageController = TextEditingController();
-   final TextEditingController _editfakultasController = TextEditingController();
+  final TextEditingController _editfakultasController = TextEditingController();
   final TextEditingController _editjurusanController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -97,6 +99,17 @@ class _HomeUserState extends State<HomeUser> {
                   ),
                 ),
               ),
+              ElevatedButton(
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                    );
+                  },
+                  child: Text('Sign out')),
               StreamBuilder<QuerySnapshot>(
                 stream: firestoreService.getstudyprogram(),
                 builder: (context, snapshot) {

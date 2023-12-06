@@ -112,11 +112,10 @@ class _OnBoardState extends State<OnBoard> {
                     //       builder: (context) => const Login(),
                     //     ));
                     Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeUser(),
-                                        ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeUser(),
+                        ));
                   }
                   // getChangedPageAndMoveBar(1);
                 },
