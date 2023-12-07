@@ -17,8 +17,10 @@ class _HomeUserState extends State<HomeUser> {
   final TextEditingController _fakultasController = TextEditingController();
   final TextEditingController _jurusanController = TextEditingController();
   final TextEditingController _imageController = TextEditingController();
+  final TextEditingController _detailController = TextEditingController();
   final TextEditingController _editfakultasController = TextEditingController();
   final TextEditingController _editjurusanController = TextEditingController();
+  final TextEditingController _editdetailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final drawerHeader = UserAccountsDrawerHeader(
@@ -120,6 +122,11 @@ class _HomeUserState extends State<HomeUser> {
                               controller: _imageController,
                               decoration:
                                   InputDecoration(labelText: 'Image URL'),
+                             ),
+                            TextField(
+                              controller: _detailController,
+                              decoration:
+                                  InputDecoration(labelText: 'Detail'),      
                             ),
                           ],
                         ),
@@ -130,10 +137,12 @@ class _HomeUserState extends State<HomeUser> {
                                 _fakultasController.text,
                                 _jurusanController.text,
                                 _imageController.text,
+                                _detailController.text,
                               );
                               _fakultasController.clear();
                               _jurusanController.clear();
                               _imageController.clear();
+                              _detailController.clear();
                               Navigator.of(context).pop();
                             },
                             child: Text('Simpan'),
@@ -238,6 +247,13 @@ class _HomeUserState extends State<HomeUser> {
                                                                       labelText:
                                                                           'Jurusan'),
                                                                 ),
+                                                                TextField(
+                                                                  controller:
+                                                                      _editdetailController,
+                                                                  decoration: InputDecoration(
+                                                                      labelText:
+                                                                          'Detail'),
+                                                                ),
                                                               ],
                                                             ),
                                                             actions: [
@@ -249,7 +265,7 @@ class _HomeUserState extends State<HomeUser> {
                                                                       _editjurusanController
                                                                           .text,
                                                                       documentSnapshot
-                                                                          .id);
+                                                                          .id,_editdetailController.text);
                                                                   Navigator.of(
                                                                           context)
                                                                       .pop();
