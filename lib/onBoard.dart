@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:modul7/bottomNavbar.dart';
 import 'package:modul7/hex_color.dart';
 import 'package:modul7/viewmodel/home_user.dart';
 
@@ -108,7 +109,7 @@ class _OnBoardState extends State<OnBoard> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const HomeUser(),
+                          builder: (context) => const BottomNavbar(),
                         ));
                   }
                   // getChangedPageAndMoveBar(1);
@@ -154,7 +155,7 @@ Widget mainView(image, title, subtitle) {
       children: <Widget>[
         Container(
           width: double.infinity,
-          // height: 150,
+          height: 200,
           // decoration: BoxDecoration(
           //   color: Colors.red,
           // ),

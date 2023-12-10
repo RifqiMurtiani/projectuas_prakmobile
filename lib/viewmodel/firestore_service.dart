@@ -12,15 +12,22 @@ class FirestoreService {
   // post
   Future<void> addstudyprogram(
       String fakultas, String jurusan, String image, String detail) async {
-    studyprogram
-        .add({'fakultas': fakultas, 'jurusan': jurusan, 'image': image, 'detail': detail});
+    studyprogram.add({
+      'fakultas': fakultas,
+      'jurusan': jurusan,
+      'image': image,
+      'detail': detail,
+    });
   }
 
   //update
   Future<void> updatestudyprogram(
       String fakultas, String jurusan, String id, String detail) async {
-    studyprogram.doc(id)
-        .update({'fakultas': fakultas, 'jurusan': jurusan, 'detail': detail});
+    studyprogram.doc(id).update({
+      'fakultas': fakultas,
+      'jurusan': jurusan,
+      'detail': detail,
+    });
   }
 
   //delete

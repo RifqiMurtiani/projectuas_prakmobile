@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modul7/detailPage.dart';
 import 'package:modul7/hex_color.dart';
 import 'package:modul7/login.dart';
 import 'firestore_service.dart';
@@ -42,7 +43,7 @@ class _HomeUserState extends State<HomeUser> {
         drawerHeader,
         ListTile(
           title: const Text(
-            'LOPYUU',
+            'LOPYUUUUU<3',
           ),
           leading: const Icon(Icons.favorite),
           onTap: () {
@@ -122,11 +123,10 @@ class _HomeUserState extends State<HomeUser> {
                               controller: _imageController,
                               decoration:
                                   InputDecoration(labelText: 'Image URL'),
-                             ),
+                            ),
                             TextField(
                               controller: _detailController,
-                              decoration:
-                                  InputDecoration(labelText: 'Detail'),      
+                              decoration: InputDecoration(labelText: 'Detail'),
                             ),
                           ],
                         ),
@@ -181,149 +181,145 @@ class _HomeUserState extends State<HomeUser> {
                             Map<String, dynamic> data =
                                 documentSnapshot.data() as Map<String, dynamic>;
 
-                            return Container(
-                              margin: const EdgeInsets.symmetric(vertical: 5),
-                              child: Material(
-                                color: Colors.purple[50],
-                                elevation: 2,
-                                borderRadius: BorderRadius.circular(5),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: SizedBox(
-                                              width: 120,
-                                              child: Image(
-                                                  image: NetworkImage(
-                                                      data['image'])),
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                      image: data['image'] ?? "",
+                                      jurusan: data['jurusan'] ?? "",
+                                      fakultas: data['fakultas'] ?? "",
+                                      detail: data['detail'] ?? "",
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(vertical: 5),
+                                child: Material(
+                                  color: Colors.purple[50],
+                                  elevation: 2,
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: SizedBox(
+                                            width: 120,
+                                            child: Image(
+                                              image: NetworkImage(
+                                                data['image'],
+                                                scale: 1.0,
+                                              ),
                                             ),
                                           ),
-                                          SizedBox(width: 5),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                data['fakultas'],
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15),
-                                              ),
-                                              Text(data['jurusan']),
-                                              Row(
-                                                children: [
-                                                  SizedBox(
-                                                    width: 140,
+                                        ),
+                                        Expanded(
+                                          child: ListTile(
+                                            title: Text(data['fakultas']),
+                                            subtitle: Text(data['jurusan']),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Edit Study Program'),
+                                                  content: Column(
+                                                    children: [
+                                                      TextField(
+                                                        controller:
+                                                            _editfakultasController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                                labelText:
+                                                                    'Fakultas'),
+                                                      ),
+                                                      TextField(
+                                                        controller:
+                                                            _editjurusanController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                                labelText:
+                                                                    'Jurusan'),
+                                                      ),
+                                                      TextField(
+                                                        controller:
+                                                            _editdetailController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                                labelText:
+                                                                    'Detail'),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Edit Study Program'),
-                                                            content: Column(
-                                                              children: [
-                                                                TextField(
-                                                                  controller:
-                                                                      _editfakultasController,
-                                                                  decoration: InputDecoration(
-                                                                      labelText:
-                                                                          'Fakultas'),
-                                                                ),
-                                                                TextField(
-                                                                  controller:
-                                                                      _editjurusanController,
-                                                                  decoration: InputDecoration(
-                                                                      labelText:
-                                                                          'Jurusan'),
-                                                                ),
-                                                                TextField(
-                                                                  controller:
-                                                                      _editdetailController,
-                                                                  decoration: InputDecoration(
-                                                                      labelText:
-                                                                          'Detail'),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            actions: [
-                                                              ElevatedButton(
-                                                                onPressed: () {
-                                                                  firestoreService.updatestudyprogram(
-                                                                      _editfakultasController
-                                                                          .text,
-                                                                      _editjurusanController
-                                                                          .text,
-                                                                      documentSnapshot
-                                                                          .id,_editdetailController.text);
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .pop();
-                                                                },
-                                                                child: Text(
-                                                                    'Simpan'),
-                                                              ),
-                                                            ],
-                                                          );
+                                                  actions: [
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        firestoreService.updatestudyprogram(
+                                                            _editfakultasController
+                                                                .text,
+                                                            _editjurusanController
+                                                                .text,
+                                                            documentSnapshot.id,
+                                                            _editdetailController
+                                                                .text);
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: Text('Simpan'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                        'Apakah yakin ingin menghapus data?'),
+                                                    actions: [
+                                                      ElevatedButton(
+                                                        onPressed: () {
+                                                          firestoreService
+                                                              .deletestudyprogram(
+                                                                  documentSnapshot
+                                                                      .id);
+                                                          Navigator.of(context)
+                                                              .pop();
                                                         },
-                                                      );
-                                                    },
-                                                    child: Icon(
-                                                      Icons.edit,
-                                                      color: Colors.green,
-                                                      // size: 30,
-                                                    ),
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                  'Apakah yakin ingin menghapus data?'),
-                                                              actions: [
-                                                                ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    firestoreService
-                                                                        .deletestudyprogram(
-                                                                            documentSnapshot.id);
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                  child: Text(
-                                                                      'Hapus'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Icon(
-                                                      Icons.delete,
-                                                      color: Colors.red,
-                                                      // size: 30,
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
+                                                        child: Text('Hapus'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                });
+                                          },
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
