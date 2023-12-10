@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modul7/firebase_auth.dart';
 import 'package:modul7/hex_color.dart';
-// ignore: unused_import
 import 'package:modul7/onBoard.dart';
 import 'package:modul7/register.dart';
 // ignore: unused_import
